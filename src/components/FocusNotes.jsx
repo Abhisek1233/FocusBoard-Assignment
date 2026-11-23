@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, CheckCircle2, Sparkles, Flame, Trophy } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { focusNotesSlides } from '../data/sampleTasks';
 
 export default function FocusNotes({ slides = focusNotesSlides }) {
@@ -45,8 +45,7 @@ export default function FocusNotes({ slides = focusNotesSlides }) {
         {/* Left: Content Block */}
         <div className="space-y-3 max-w-xl">
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-white/10 backdrop-blur-md text-indigo-200 border border-white/10">
-              <Sparkles className="w-3 h-3 text-indigo-300" />
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-white/10 backdrop-blur-md text-indigo-200 border border-white/10">
               {currentSlide.pill}
             </span>
             <span className="text-xs font-semibold font-mono tracking-widest text-indigo-300/80">

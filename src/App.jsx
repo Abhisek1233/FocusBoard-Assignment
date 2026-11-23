@@ -5,10 +5,7 @@ import {
   Clock,
   ListTodo,
   TrendingUp,
-  RotateCcw,
-  Sparkles,
-  CalendarDays,
-  SlidersHorizontal
+  RotateCcw
 } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
