@@ -6,7 +6,7 @@ import {
   Settings,
   X,
   Layers,
-  ChevronRight
+  LogOut
 } from 'lucide-react';
 
 export default function Sidebar({
@@ -14,10 +14,11 @@ export default function Sidebar({
   onClose,
   activeNav = 'Overview',
   setActiveNav,
-  stats = { total: 0, inProgress: 0, completed: 0 }
+  stats = { total: 0, inProgress: 0, completed: 0 },
+  onLogout
 }) {
   const navItems = [
-    { id: 'Overview', label: 'Overview', icon: LayoutGrid, count: null },
+    { id: 'Overview', label: 'Overview (Home)', icon: LayoutGrid, count: null },
     { id: 'My tasks', label: 'My tasks', icon: CheckSquare, count: stats.total },
     { id: 'Calendar', label: 'Calendar', icon: Calendar, count: null },
     { id: 'Settings', label: 'Settings', icon: Settings, count: null }
@@ -42,10 +43,18 @@ export default function Sidebar({
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Brand / Logo */}
+        {/* Brand / Logo (Clickable Home link) */}
         <div className="h-20 flex items-center justify-between px-6 border-b border-slate-100">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-indigo-200">
+          <button
+            type="button"
+            onClick={() => {
+              if (setActiveNav) setActiveNav('Overview');
+              if (onClose) onClose();
+            }}
+            className="flex items-center gap-3 text-left focus:outline-none group"
+            title="Go to Dashboard Home"
+          >
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform">
               {/* 4-square icon matching Figma */}
               <div className="grid grid-cols-2 gap-1 w-4 h-4">
                 <span className="w-1.5 h-1.5 bg-white rounded-xs"></span>
@@ -55,10 +64,10 @@ export default function Sidebar({
               </div>
             </div>
             <div>
-              <span className="text-lg font-bold tracking-tight text-slate-900">FocusBoard</span>
-              <span className="block text-[10px] font-semibold text-indigo-600 uppercase tracking-wider">Workspace</span>
+              <span className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">FocusBoard</span>
+              <span className="block text-[10px] font-semibold text-indigo-600 uppercase tracking-wider">Workspace Home</span>
             </div>
-          </div>
+          </button>
 
           {/* Close button for mobile */}
           <button
@@ -141,17 +150,29 @@ export default function Sidebar({
           </div>
         </div>
 
-        {/* User Quick Profile card at sidebar bottom */}
+        {/* User Quick Profile card & Logout at sidebar bottom */}
         <div className="p-4 border-t border-slate-100 bg-slate-50/50">
-          <div className="flex items-center gap-3 p-2 rounded-xl bg-white border border-slate-200/80 shadow-xs">
-            <div className="w-9 h-9 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs">
-              JD
+          <div className="flex items-center justify-between p-2 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-9 h-9 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs shrink-0">
+                JD
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-semibold text-slate-900 truncate">John Doe</p>
+                <p className="text-[11px] text-slate-500 truncate">Admin</p>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-slate-900 truncate">John Doe</p>
-              <p className="text-[11px] text-slate-500 truncate">Product Designer</p>
-            </div>
-            <ChevronRight className="w-4 h-4 text-slate-400" />
+
+            {/* Logout Icon Button */}
+            <button
+              type="button"
+              onClick={onLogout}
+              title="Log out"
+              aria-label="Log out of FocusBoard"
+              className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </aside>
