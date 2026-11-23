@@ -167,5 +167,5 @@ focusboard/
 
 - **Candidate**: Abhisek Behera
 - **Framework**: React.js + Vite
-- **Hosting URL**: *(Deploy link to be added after GitHub push)*
-- **GitHub Repository**: *(Repository link to be added)*
+- **Hosting URL**: *(Ready for Vercel/Netlify deployment)*
+- **GitHub Repository**: https://github.com/Abhisek1233/FocusBoard-Assignment
